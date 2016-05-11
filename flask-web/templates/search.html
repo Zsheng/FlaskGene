@@ -1,0 +1,136 @@
+{% extends"base.html" %}
+
+{% block title %}查询{% endblock %}
+
+{% block page_content %}
+    <div class="container">
+        <h1>
+            查询
+        </h1>
+        <hr>
+        <ol class="breadcrumb">
+            <li><a href="{{ url_for('index') }}">首页</a></li>
+            <li class="active">查询</li>
+        </ol>
+        <div class="container">
+            <div class="col-lg-4">
+                <form method="POST" action="{{ url_for('search') }}" class="primary">
+                    <dl>
+                        <h4 class="text-danger">输入想查询的信息{{ form.search }}</h4>
+                        <h5 class="text-success">信息类型：{{ form.search_type }}<input type=submit value='Search' class="btn-primary"></h5>
+                    </dl>
+                    <p class="text-danger">输入基因名字：BRCS1...<br>输入染色体：Y...<br>输入起始终止位点：123-456</p>
+                </form>
+            </div>
+            <div class="col-lg-6">
+                <br><br>
+                <br>
+                <blockquote class="text-right">
+                    本站提供的数据库查询信息不代表任何权威机构的看法。<br>
+                    更多详细信息请以具有医学资质机构提供信息为准！
+                    <footer>Someone famous in <cite title="Source Title">My</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+
+        <hr>
+        {% if show_info %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">查询结果</h3>
+                </div>
+                <div class="panel-body">
+                    来源：XXX
+                </div>
+                <table class="table">
+                    <th>序号</th><th>染色体</th><th>起始位点</th><th>终止位点</th><th>变异类型</th><th>疾病症状</th><th>是否验证</th>
+                    {% for i in range(0, lenght) %}
+                        <tr><td>{{ i + 1 }}</td><td>{{ show_info[i][14] }}</td><td>{{ show_info[i][18] }}</td><td>{{ show_info[i][19] }}</td><td>{{ show_info[i][4] }}</td><td>{{ show_info[i][10] }}</td><td>{{ show_info[i][8] }}</td></tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        {% else %}
+            <div class="container">
+                <a href="https://decipher.sanger.ac.uk/"><h2>Decipher</h2></a>
+                <p>
+                    DECIPHER为“Database of Chromosomal Imbalance and Phenotype in Humans using Ensembl Resources”的简称，<br>
+                    也是目前分子遗传学中最重要的生物信息学数据库之一。用户可以通过检索数据库，发现一系列相关的遗传疾病信息，<br>
+                    包括变异位点、临床表型等，提高临床诊断效能。DECIPHER数据库包含了超过200家研究中心上传的超过10,000例的案例信息。
+                </p>
+                <a href="http://www.omim.org/"><h2>OMIM数据库</h2></a>
+                <p>
+                    OMIM 为“0nline Mendelian Inheritance in Man”的简称，意即“在线人类孟德尔遗传数据库”，<br>
+                    是目前分子遗传学中最重要的生物信息学数据库之一。数据库持续更新，主要着眼于可遗传的或遗传性的基因疾病，<br>
+                    包括文本信息和相关参考信息、序列纪录、图谱和相关其他数据库。
+                </p>
+                <a href="http://dgv.tcag.ca/dgv/app/home"><h2>DGV数据库</h2></a>
+                <p>
+                    DGV为“Database of Genomic Variants”的简称，目的是提供人类染色体结构变异的概况信息，<br>
+                    数据库记录了一系列基因变异与表型相关的信息，数据库信息持续更新中。
+                </p>
+            </div>
+        {% endif %}
+    </div>
+
+    <hr>
+
+    <div class="container" style="background-color: azure">
+        <div class="footer1">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6 widget">
+                <h3 class="widget-title">联系我们</h3>
+                <div class="widget-body">
+                    <p>0760-89965088<br>
+                        <a href="mailto:#">13465@gmail.com</a><br>
+                        <br>
+                        广东省中山市火炬开发区祥兴路数贸大厦南翼8层
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 widget">
+                <h3 class="widget-title">关注我们</h3>
+                <div class="widget-body">
+                    <p class="follow-me-icons">
+                        <a href=""><i class="fa fa-weibo fa-2"></i></a>
+                        <a href=""><i class="fa fa-magic fa-2"></i></a>
+                    </p>
+                </div>
+            </div>
+
+        </div> <!-- /row of widgets -->
+    </div>
+</div>
+        <div class="footer2">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6 widget">
+                <div class="widget-body">
+                    <p class="simplenav">
+                        <a href="#">首页</a> |
+                        <a href="about.html">关于我们</a> |
+                        <a href="bio-info.html">资讯</a> |
+                        <a href="contact.html">联系我们</a> |
+                        <b><a href="signup.html">登陆</a></b>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 widget">
+                <div class="widget-body">
+                    <p class="text-right">
+                        粤ICP备15082429号 Coppyright &copy; 2016腾飞基因科技有限公司
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /row of widgets -->
+    </div>
+</div>
+    </div>
+
+{% endblock %}
+

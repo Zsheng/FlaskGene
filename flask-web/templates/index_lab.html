@@ -1,0 +1,183 @@
+{% extends"base.html" %}
+
+{% block title %}实验人员{% endblock %}
+
+{% block page_content %}
+    <div class="container">
+        <h1>
+            查看样品
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ url_for('index') }}">首页</a></li>
+            <li class="active">查看样品</li>
+        </ol>
+
+        <div class="container">
+            <div class="col-lg-3">
+                <table class="table">
+                    {% if info %}
+                        <caption>我的信息</caption>
+                        <thead>
+                        <tr>
+                            <th>条目</th>
+                            <th>详情</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in info %}
+                            <tr>
+                                <td>姓名：</td>
+                                <td>{{ i[1] }}</td>
+                            </tr>
+                            <tr>
+                                <td>实验室：</td>
+                                <td>{{ i[2] }}</td>
+                            </tr>
+                            <tr>
+                                <td>职责：</td>
+                                <td>{{ i[3] }}</td>
+                            </tr>
+                            <tr>
+                                <td>联系电话：</td>
+                                <td>{{ i[4] }}</td>
+                            </tr>
+                            <tr>
+                                <td>邮箱：</td>
+                                <td>{{ i[5] }}</td>
+                            </tr>
+                            <tr>
+                        {% endfor %}
+                    {% else %}
+                        <div class="alert alert-danger">没有您的具体信息，请完善吧。</div>
+                    {% endif %}
+                    <td class="text-center">
+                        <a href="{{ url_for('lab_alter_info') }}"><button class="btn btn-primary btn-lg">
+                            完善信息
+                        </button></a>
+                    </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="form-row">
+                    <form class="form-search" method="POST">
+                        <label>
+                            <input type="text" class="input-medium search-query" {{ form.search }}
+                        </label>
+                        <a href="{{ url_for('lab_index') }}"><button type="submit" class="btn">Search</button></a>
+                    </form>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <caption>样本数据</caption>
+                        <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>检测项目</th>
+                            <th>样本接收日期</th>
+                            <th>送检单位</th>
+                            <th>样本类型</th>
+                            <th>样本存放位置</th>
+                            <th>检验人</th>
+                            <th>结果</th>
+                            <th>状态</th>
+                        </tr>
+                        </thead>
+                        {% for m in range(0, length) %}
+                            <tbody>
+                            <tr class="active">
+                                <td><a href="#">{{ m + 1 }}</a></td>
+                                <td>{% if results[m][2] == 1 %}
+                                    无创产前检测
+                                    {% elif results[m][2] == 2 %}
+                                    健康管理报告
+                                    {% elif results[m][2] == 3 %}
+                                    大众基因检测
+                                {% endif %}</td>
+                                <td>{{ results[m][3] }}</td>
+                                <td>{{ results[m][4] }}</td>
+                                <td>{{ results[m][5] }}</td>
+                                <td>{{ results[m][6] }}</td>
+                                <td>{{ results[m][7] }}</td>
+                                <td>{{ results[m][8] }}</td>
+                                <td>{% if results[m][9] == 1 %}
+                                    送检途中
+                                    {% elif results[m][9] == 2 %}
+                                    接收样品
+                                    {% elif results[m][9] == 3 %}
+                                    上机测序
+                                    {% elif results[m][9] == 4 %}
+                                    已完成
+                                {% else %}
+                                    无
+                                {% endif %}</td>
+                            </tr>
+                            </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="background-color: azure">
+        <div class="footer1">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6 widget">
+                        <h3 class="widget-title">联系我们</h3>
+                        <div class="widget-body">
+                            <p>0760-89965088<br>
+                                <a href="mailto:#">13465@gmail.com</a><br>
+                                <br>
+                                广东省中山市火炬开发区祥兴路数贸大厦南翼8层
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 widget">
+                        <h3 class="widget-title">关注我们</h3>
+                        <div class="widget-body">
+                            <p class="follow-me-icons">
+                                <a href=""><i class="fa fa-weibo fa-2"></i></a>
+                                <a href=""><i class="fa fa-magic fa-2"></i></a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div> <!-- /row of widgets -->
+            </div>
+        </div>
+        <div class="footer2">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6 widget">
+                        <div class="widget-body">
+                            <p class="simplenav">
+                                <a href="#">首页</a> |
+                                <a href="about.html">关于我们</a> |
+                                <a href="bio-info.html">资讯</a> |
+                                <a href="contact.html">联系我们</a> |
+                                <b><a href="signup.html">登陆</a></b>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 widget">
+                        <div class="widget-body">
+                            <p class="text-right">
+                                粤ICP备15082429号 Coppyright &copy; 2016腾飞基因科技有限公司
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- /row of widgets -->
+            </div>
+        </div>
+</div>
+{% endblock %}

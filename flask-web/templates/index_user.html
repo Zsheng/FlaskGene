@@ -1,0 +1,185 @@
+{% extends"base.html" %}
+
+{% block title %}VIP{% endblock %}
+
+{% block page_content %}
+    <div class="container">
+        <h1>
+            查询进度
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ url_for('index') }}">首页</a></li>
+            <li class="active">查询进度</li>
+        </ol>
+        <div class="container">
+            <div class="col-lg-3">
+                {% if info %}
+                    <table class="table">
+                    <caption>个人信息</caption>
+                    <thead>
+                    <tr>
+                        <th>条目</th>
+                        <th>详情</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in info %}
+                        <tr>
+                            <td>姓名：</td>
+                            <td>{{ i[1] }}</td>
+                        </tr>
+                        <tr>
+                            <td>性别：</td>
+                            <td>{% if i[2] == 1 %}
+                                男
+                                {% else %}
+                                女
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>家庭住址：</td>
+                            <td>{{ i[5] }}</td>
+                        </tr>
+                        <tr>
+                            <td>联系电话：</td>
+                            <td>{{ i[6] }}</td>
+                        </tr>
+                        <tr>
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-danger">没有您的具体信息，请完善吧。</div>
+                {% endif %}
+                <td class="text-center">
+                    <a href="{{ url_for('user_alter_info') }}"><button class="btn btn-primary btn-lg">
+                        完善信息
+                    </button></a>
+                </td>
+                </tr>
+                </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg-9">
+                <table class="table">
+                    <caption>您的查询结果</caption>
+                    <thead>
+                    <tr>
+                        <th style="width: 10%">产品</th>
+                        <th style="width: 10%">样品接受日期</th>
+                        <th style="width: 10%">状态</th>
+                        <th style="width: 10%">进度</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for m in range(length) %}
+                    <tr  class="warning">
+                        <td>{% if rep_info[m][2] == 1 %}
+                            无创产前检测
+                        {% elif rep_info[m][2] == 2 %}
+                            健康管理报告
+                        {% elif rep_info[m][2] == 3 %}
+                            大众基因检测
+                        {% endif %}</td>
+                        <td>{{ rep_info[m][3] }}</td>
+                        <td>
+                        {% if rep_info[m][9] == 1 %}
+                            送检途中
+                        {% elif rep_info[m][9] == 2 %}
+                            接收样品
+                        {% elif rep_info[m][9] == 3 %}
+                            上机测序
+                        {% elif rep_info[m][9] == 4 %}
+                            <button class="btn btn-action fa fa-search" type="submit" onclick="show(1)" id="queryButton">已完成</button>
+                        {% else %}
+                            暂无
+                        {% endif %}
+                        </td>
+                        <td>
+                            <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar"
+                                     aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                                     style="width: {{ rep_info[m][9]*25 }}%;">
+                                    {{ rep_info[m][9]*25 }}%
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row col-lg-offset-5" id="jingdu1" style="display: none" onMouseout="hidden(this);">
+        <img src="/static/assets/images/report.jpg">
+    </div>
+
+    <div class="container" style="background-color: azure">
+        <div class="footer1">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6 widget">
+                        <h3 class="widget-title">联系我们</h3>
+                        <div class="widget-body">
+                            <p>0760-89965088<br>
+                                <a href="mailto:#">13465@gmail.com</a><br>
+                                <br>
+                                广东省中山市火炬开发区祥兴路数贸大厦南翼8层
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 widget">
+                        <h3 class="widget-title">关注我们</h3>
+                        <div class="widget-body">
+                            <p class="follow-me-icons">
+                                <a href=""><i class="fa fa-weibo fa-2"></i></a>
+                                <a href=""><i class="fa fa-magic fa-2"></i></a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div> <!-- /row of widgets -->
+            </div>
+        </div>
+        <div class="footer2">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6 widget">
+                        <div class="widget-body">
+                            <p class="simplenav">
+                                <a href="#">首页</a> |
+                                <a href="about.html">关于我们</a> |
+                                <a href="bio-info.html">资讯</a> |
+                                <a href="contact.html">联系我们</a> |
+                                <b><a href="signup.html">登陆</a></b>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 widget">
+                        <div class="widget-body">
+                            <p class="text-right">
+                                粤ICP备15082429号 Coppyright &copy; 2016腾飞基因科技有限公司
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- /row of widgets -->
+            </div>
+        </div>
+    </div>
+
+    <!--设置弹出检测进度表-->
+    <script type="text/javascript">
+        function show(v){
+            document.getElementById("jingdu"+v).style.display = "";
+        }
+        function hidden(v){
+            v.style.display = "none";
+        }
+    </script>
+{% endblock %}

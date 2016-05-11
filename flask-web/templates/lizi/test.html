@@ -1,0 +1,24 @@
+<html lang="ru">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+<body>
+<div id="div1" style="display: none" onMouseout="hidden(this);" class="content">aaaaa</div>
+<div id="div2" style="display: none" onMouseout="hidden(this);" class="content">bbbbb</div>
+<div></div>
+<div >
+    <ul id='tabnav'>
+        <li><input name="name" type="button" onClick="show(1);" value="显示1"></li>
+        <li><input name="name" type="button" onClick="show(2);" value="显示2"></li>
+        <li class='active'></li></ul></div></div>
+<script type="text/javascript">
+    function show(v){
+        document.getElementById("div" + v).style.display = "";
+    }
+    function hidden(v){
+        v.style.display = "none";
+    }
+</script>
+</body>
+</html>

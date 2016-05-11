@@ -1,0 +1,182 @@
+{% extends"base.html" %}
+
+{% block title %}实验人员{% endblock %}
+
+{% block page_content %}
+    <div class="container">
+        <h1>
+            接收样品
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ url_for('index') }}">首页</a></li>
+            <li class="active">接收样品</li>
+        </ol>
+        <table class="table table-striped">
+            <caption>样品接受确认</caption>
+            <thead>
+            <tr>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>住址</th>
+                <th>电话</th>
+                <th>紧急联系人</th>
+                <th>紧急联系人电话</th>
+                <th>接收</th>
+            </tr>
+            </thead>
+            {% for m in range(0, length) %}
+                <tbody>
+                <tr>
+                    <td>{{ info[m][1] }}</td>
+                    <td>{% if info[m][2] == '1' %}
+                        女{% else %}
+                        男
+                        {% endif %}
+                    </td>
+                    <td>{{ info[m][3] }}</td>
+                    <td>{{ info[m][5] }}</td>
+                    <td>{{ info[m][6] }}</td>
+                    <td>{{ info[m][8] }}</td>
+                    <td>{{ info[m][9] }}</td>
+                    <td>
+                        <div class="col-lg-7">
+
+                            <!-- 按钮触发模态框 -->
+                            <div class="center-block">
+                                <button class="btn btn-danger btn-sm" data-toggle="modal"
+                                        data-target="#myModal">
+                                    确认接受
+                                </button>
+                            </div>
+
+                            <!-- 模态框（Modal） -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close"
+                                                    data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">
+                                                填写样品信息
+                                            </h4>
+                                        </div>
+                                        <form action="{{ url_for('lab_jieshou') }}" method="POST">
+                                            <div class="modal-body">
+                                                {% for m in range(length) %}
+                                                <table class="table">
+                                                    <caption>请认真填写</caption>
+                                                    <thead>
+                                                    <tr>
+                                                        <td>确认接收</td>
+                                                        <td>{{ form.jieshou }}</td>
+                                                        <td>确认备份</td>
+                                                        <td>{{ form.beifen }}</td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>样品编号：</td>
+                                                        <td>{{ info[m][0] }}</td>
+                                                        <td>检测项目：</td>
+                                                        <td>{{ form.name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>样品接受日期：</td>
+                                                        <td>{{ form.date }}</td>
+                                                        <td>年龄：</td>
+                                                        <td>{{ info[m][3] }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>送检单位：</td>
+                                                        <td>{{ form.songjian }}</td>
+                                                        <td>样品类型：</td>
+                                                        <td>{{ form.yp_type }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>样品存放位置：</td>
+                                                        <td>{{ form.yp_location }}</td>
+                                                        <td>检验人：</td>
+                                                        <td>{{ session['username'] }}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                                    {% endfor %}
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default"
+                                                        data-dismiss="modal">关闭
+                                                </button>
+                                                <input type=submit value='提交' class="btn btn-primary">
+                                            </div>
+                                        </form>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+                            </div>
+                        </div></td>
+                </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="container navbar-fixed-bottom" style="background-color: azure">
+        <div class="footer1">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6 widget">
+                        <h3 class="widget-title">联系我们</h3>
+                        <div class="widget-body">
+                            <p>0760-89965088<br>
+                                <a href="mailto:#">13465@gmail.com</a><br>
+                                <br>
+                                广东省中山市火炬开发区祥兴路数贸大厦南翼8层
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 widget">
+                        <h3 class="widget-title">关注我们</h3>
+                        <div class="widget-body">
+                            <p class="follow-me-icons">
+                                <a href=""><i class="fa fa-weibo fa-2"></i></a>
+                                <a href=""><i class="fa fa-magic fa-2"></i></a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div> <!-- /row of widgets -->
+            </div>
+        </div>
+        <div class="footer2">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6 widget">
+                        <div class="widget-body">
+                            <p class="simplenav">
+                                <a href="#">首页</a> |
+                                <a href="about.html">关于我们</a> |
+                                <a href="bio-info.html">资讯</a> |
+                                <a href="contact.html">联系我们</a> |
+                                <b><a href="signup.html">登陆</a></b>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 widget">
+                        <div class="widget-body">
+                            <p class="text-right">
+                                粤ICP备15082429号 Coppyright &copy; 2016腾飞基因科技有限公司
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- /row of widgets -->
+            </div>
+        </div>
+</div>
+{% endblock %}

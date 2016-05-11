@@ -1,0 +1,218 @@
+{% extends"base.html" %}
+
+{% block title %}医生{% endblock %}
+
+{% block page_content %}
+    <div class="container">
+    <h1>
+        预约采样
+    </h1>
+<hr>
+        <ol class="breadcrumb">
+            <li><a href="{{ url_for('index') }}">首页</a></li>
+            <li class="active">预约采样</li>
+        </ol>
+    <div class="container">
+        <div class="col-lg-3">
+        {% if info %}
+            <table class="table">
+                <caption>我的信息</caption>
+                <thead>
+                <tr>
+                    <th>条目</th>
+                    <th>详细</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in info %}
+                <tr>
+                    <td>姓名：</td>
+                    <td>{{ i[1] }}</td>
+                </tr>
+                <tr>
+                    <td>邮箱：</td>
+                    <td>{{ i[2] }}</td>
+                </tr>
+                <tr>
+                    <td>所在医院：</td>
+                    <td>{{ i[3] }}</td>
+                </tr>
+                <tr>
+                    <td>职称：</td>
+                    <td>{{ i[4] }}</td>
+                </tr>
+                <tr>
+                    <td>联系电话：</td>
+                    <td>{{ i[5] }}</td>
+                </tr>
+                <tr>
+                {% endfor %}
+                {% else %}
+                    <div class="alert alert-danger">没有您的具体信息，请完善吧。</div>
+                {% endif %}
+                    <td class="text-center">
+                        <a href="{{ url_for('doc_alter_info') }}"><button class="btn btn-primary btn-lg">
+                            完善信息
+                        </button></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <!--中间预约采集血液部分 -->
+        <div class="col-lg-8">
+            <h4>预约采血</h4>
+            <p class="text-center">
+                在为客户提供了专业的解释以及专业的讲解后，确定客户需要，<br>
+                达成一致之后方可预约！
+            </p>
+            <hr>
+
+            <!-- 按钮触发模态框 -->
+            <div class="container">
+                <br>
+                <br>
+                <br>
+                <div class="col-lg-offset-3">
+                <button class="btn btn-danger btn-lg" data-toggle="modal"
+                        data-target="#myModal">
+                    预约
+                </button>
+                </div>
+            </div>
+
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close"
+                                    data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                输入客户的以下信息，完成预约，并成功注册为用户
+                            </h4>
+                        </div>
+                        <form action="{{ url_for('doc_index') }}" method="POST">
+                            <div class="modal-body">
+                                <table class="table">
+                                    <caption>请认真填写</caption>
+                                    <thead>
+                                    <tr>
+                                        <th>项目</th>
+                                        <th>内容</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>姓名：</td>
+                                        <td>{{ form.p_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>性别：</td>
+                                        <td>{{ form.p_sex }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>年龄：</td>
+                                        <td>{{ form.p_age }}
+                                    </tr>
+                                    <tr>
+                                        <td>身份证号：</td>
+                                        <td>{{ form.p_idcard }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>家庭住址：</td>
+                                        <td>{{ form.p_address }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>联系电话：</td>
+                                        <td>{{ form.p_phone }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>紧急联系人：</td>
+                                        <td>{{ form.p_emergency_contact }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>紧急联系人电话：</td>
+                                        <td>{{ form.P_emergency_phone }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default"
+                                        data-dismiss="modal">关闭
+                                </button>
+                                <input type=submit value='提交' class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <hr>
+        <div class="container" style="background-color: azure">
+        <div class="footer1">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6 widget">
+                <h3 class="widget-title">联系我们</h3>
+                <div class="widget-body">
+                    <p>0760-89965088<br>
+                        <a href="mailto:#">13465@gmail.com</a><br>
+                        <br>
+                        广东省中山市火炬开发区祥兴路数贸大厦南翼8层
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 widget">
+                <h3 class="widget-title">关注我们</h3>
+                <div class="widget-body">
+                    <p class="follow-me-icons">
+                        <a href=""><i class="fa fa-weibo fa-2"></i></a>
+                        <a href=""><i class="fa fa-magic fa-2"></i></a>
+                    </p>
+                </div>
+            </div>
+
+        </div> <!-- /row of widgets -->
+    </div>
+</div>
+        <div class="footer2">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6 widget">
+                <div class="widget-body">
+                    <p class="simplenav">
+                        <a href="#">首页</a> |
+                        <a href="about.html">关于我们</a> |
+                        <a href="bio-info.html">资讯</a> |
+                        <a href="contact.html">联系我们</a> |
+                        <b><a href="signup.html">登陆</a></b>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 widget">
+                <div class="widget-body">
+                    <p class="text-right">
+                        粤ICP备15082429号 Coppyright &copy; 2016腾飞基因科技有限公司
+                    </p>
+                </div>
+            </div>
+        </div> <!-- /row of widgets -->
+    </div>
+</div>
+    </div>
+{% endblock %}

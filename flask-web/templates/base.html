@@ -1,0 +1,53 @@
+{% extends "Bootstrap/base.html" %}
+
+{% block title %}Gene{% endblock %}
+
+{% block navbar %}
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" xmlns="http://www.w3.org/1999/html">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Gene</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                        {% if request.cookies.get('usertype')=='1' %}
+                            <li><a href="{{ url_for('search') }}">查询</a></li>
+                            <li><a href="{{ url_for('check') }}">检测</a></li>
+                            <li class="list-group-item-info"><a href="{{ url_for('doc_index') }}">预约采样</a></li>
+                        {% endif %}
+                        {% if request.cookies.get('usertype')=='2' %}
+                            <li class="list-group-item-info"><a href="{{ url_for('user_index') }}">检查进度</a></li>
+                        {% endif %}
+                        {% if request.cookies.get('usertype')=='3' %}
+                            <li class="list-group-item-info"><a href="{{ url_for('lab_index') }}">查看样品</a></li>
+                            <li class="list-group-item-info"><a href="{{ url_for('lab_jieshou') }}">接收样品</a></li>
+                        {% endif %}
+                </ul>
+                <ul class=" col-lg-offset-10 text-warning">
+                    {% if session['username']!='' %}{{ session['username'] }},您好！<br>
+                        <a href="{{ url_for('logout') }}">注销</a>
+                    {% else %}
+                        <br>
+                        <a class="btn btn-info btn-sm" role="button" href="{{ url_for('login') }}">
+                            登陆
+                        </a>
+                        <a class="btn btn-info btn-sm" role="button" href="{{ url_for('register') }}">
+                            注册
+                        </a>
+
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+<br>
+{% endblock %}
+
+
+{% block content %}
+        {% block page_content %}{% endblock %}
+{% endblock %}
+

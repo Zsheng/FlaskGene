@@ -1,0 +1,13 @@
+{% extends"base.html" %}
+
+{% block title %}Gene{% endblock %}
+
+{% block page_content %}
+
+{% if session['username'] %}
+    <p class="text-info">您已成功登陆！{{ request.cookies.get('usertype') }}<a href="{{ url_for('index') }}">点击这里跳转</a></p>
+    {% else %}
+    <h2>你还没有注册，请<a href="{{ url_for('register') }}">注册</a>后登陆吧！</h2>
+{% endif %}
+
+{% endblock %}

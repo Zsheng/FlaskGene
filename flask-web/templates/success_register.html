@@ -1,0 +1,13 @@
+{% extends"base.html" %}
+
+{% block title %}Gene{% endblock %}
+
+{% block page_content %}
+
+{% if session['username'] %}
+    <h2>hello,{{ session['username'] }}</h2>
+    {% else %}
+    <h2>你还没有注册，请<a href="/register">注册</a>后登陆吧！</h2>
+{% endif %}
+
+{% endblock %}

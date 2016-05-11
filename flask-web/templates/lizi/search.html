@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
+
+    <title>进度查询</title>
+
+    <link rel="shortcut icon" href="/static/assets/images/gt_favicon.png">
+
+    <!--<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">-->
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+
+    <!-- Custom styles for our template -->
+    <link rel="stylesheet" href="/static/assets/css/bootstrap-theme.css" media="screen" >
+    <link rel="stylesheet" href="/static/assets/css/main.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="home">
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+    <div class="container">
+        <div class="navbar-header">
+            <!-- Button for smallest screens -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a class="navbar-brand" href="index.html"><img src="/static/assets/images/logo.png" alt="Progressus HTML5 template"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav pull-right">
+                <li class="active"><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="tec-service.html">科技服务</a></li>
+                        <li class="active"><a href="bio-info.html">生物信息</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html">联系我们</a></li>
+                <li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+<!-- /.navbar -->
+
+<!-- SEARCH.HTML-->
+
+<div class="container">
+    <br><br><br><br>
+    <ol class="breadcrumb">
+        <li><a href="index.html">首页</a></li>
+        <li class="active">进度查询</li>
+    </ol>
+
+    <div class="row">
+        <!-- Article main content -->
+        <article class="col-xs-12 maincontent">
+            <header class="page-header">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <h1 class="page-title">查询</h1>
+                    </div>
+                    <div class="col-lg-10">
+                        <!-- jindu-->
+                        <div class="row" id="jingdu1" style="display: none" onMouseout="hidden(this);">
+                            <div class="col-md-8 col-md-offset-1 col-sm-10 col-sm-offset-2">
+                                <!--<div class="h-caption"><h4>以下是您的查询结果</h4></div>-->
+                                <div class="h-body text-center">
+                                    <table class="table table-responsive">
+                                        <thead>
+                                        <tr>
+                                            <th>产品名称</th>
+                                            <th>样品编号</th>
+                                            <th>报告生成日期</th>
+                                            <th>状态</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>无创产前检测</td>
+                                            <td>001</td>
+                                            <td>未生生成</td>
+                                            <td>检测中</td>
+                                        </tr>
+                                        <!--<tr>-->
+                                            <!--<td>无创产前检测</td>-->
+                                            <!--<td>002</td>-->
+                                            <!--<td>2016.03.03</td>-->
+                                            <!--<td>检测完成</td>-->
+                                        <!--</tr>-->
+                                        </tbody>
+                                    </table>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                            60%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3 class="thin text-center">输入您的相关信息进行查询</h3>
+                        <p class="text-center text-muted">按提示输入您的信息，用以支持查询</p>
+                        <hr>
+
+                        <form>
+                            <div class="col-md-8">
+                                <div class="top-margin">
+                                    <label>账号<span class="text-danger">*</span></label>
+                                    <label>
+                                        <input type="text" class="form-control " placeholder="身份证号/Ascendgene ID">
+                                    </label>
+                                </div>
+                                <div class="top-margin">
+                                    <label>密码 <span class="text-danger">*</span></label>
+                                    <label>
+                                        <input type="password" class="form-control" placeholder="检测时填写的手机号">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div>
+                                    <h2>二维码</h2>
+                                </div>
+                            </div>
+                        </form>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <hr>
+                                    <b><a href="#order_number">我的订单号？</a></b>
+                                </div>
+                                <div class="col-lg-4 text-right">
+                                    <hr>
+                                    <button class="btn btn-action fa fa-search" type="submit" onclick="show(1)" id="queryButton">Search</button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </article>
+        <!-- /Article -->
+    </div>
+</div>
+
+
+<!-- order_number-->
+
+<section id="order_number">
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="h-caption"><h4>看红色圈圈</h4></div>
+            <div class="h-body text-center">
+                <p>红色圈圈中的编号为您的订单编号</p>
+                <img src="/static/assets/images/report.jpg">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer id="footer" class="top-space">
+
+    <div class="footer1">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 widget">
+                    <h3 class="widget-title">联系我们</h3>
+                    <div class="widget-body">
+                        <p>0760-89965088<br>
+                            <a href="mailto:#">13465@gmail.com</a><br>
+                            <br>
+                            广东省中山市火炬开发区祥兴路数贸大厦南翼8层
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 widget">
+                    <h3 class="widget-title">关注我们</h3>
+                    <div class="widget-body">
+                        <p class="follow-me-icons">
+                            <a href=""><i class="fa fa-weibo fa-2"></i></a>
+                            <a href=""><i class="fa fa-magic fa-2"></i></a>
+                        </p>
+                    </div>
+                </div>
+
+            </div> <!-- /row of widgets -->
+        </div>
+    </div>
+
+    <div class="footer2">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6 widget">
+                    <div class="widget-body">
+                        <p class="simplenav">
+                            <a href="#">首页</a> |
+                            <a href="about.html">关于我们</a> |
+                            <a href="bio-info.html">资讯</a> |
+                            <a href="contact.html">联系我们</a> |
+                            <b><a href="signup.html">登陆</a></b>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 widget">
+                    <div class="widget-body">
+                        <p class="text-right">
+                            粤ICP备15082429号 Coppyright &copy; 2016腾飞基因科技有限公司
+                        </p>
+                    </div>
+                </div>
+
+            </div> <!-- /row of widgets -->
+        </div>
+    </div>
+
+</footer>
+
+
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="/static/assets/js/jquery-1.11.0.min.js"></script>
+<script src="/static/assets/js/bootstrap.min.js"></script>
+<script src="/static/assets/js/headroom.min.js"></script>
+<script src="/static/assets/js/jQuery.headroom.min.js"></script>
+<script src="/static/assets/js/template.js"></script>
+
+<!--设置弹出检测进度表-->
+<script type="text/javascript">
+    function show(v){
+        document.getElementById("jingdu"+v).style.display = "";
+    }
+    function hidden(v){
+        v.style.display = "none";
+    }
+</script>
+</body>
+</html>
